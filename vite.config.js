@@ -13,4 +13,9 @@ export default defineConfig({
       "@shared": fileURLToPath(new URL("../shared-assets", import.meta.url)),
     },
   },
+  build: {
+    rollupOptions: {
+      external: ["lucide-react"],
+    },
+  },
 });
