@@ -40,7 +40,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { tickets as ticketsApi } from "../../../shared-assets/supabase";
+import { tickets as ticketsApi } from "../shared-assets/supabase";
 import TicketCard from "../components/TicketCard.vue";
 import TicketModal from "../components/TicketModal.vue";
 
