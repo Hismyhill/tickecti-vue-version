@@ -3,7 +3,7 @@ import { computed, onMounted, ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import Modal from "./Modal.vue";
 import TicketForm from "./TicketForm.vue";
-import { auth } from "@shared/supabase";
+import { auth } from "../shared-assets/supabase";
 import { MenuIcon, PlusCircleIcon, PlusIcon } from "lucide-vue-next";
 
 const props = defineProps({
