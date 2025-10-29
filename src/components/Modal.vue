@@ -13,7 +13,7 @@
       >
         <!-- Overlay -->
         <div
-          class="fixed inset-0 bg-gray-500/75 backdrop-blur-sm animate-fade-in"
+          class="fixed inset-0 bg-gray-500/75 backdrop-blur-sm animate-fade-in cursor-pointer"
           aria-hidden="true"
           @click="onClose"
         />
@@ -45,19 +45,7 @@
                 class="text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-full p-1 transition-colors duration-200"
                 aria-label="Close modal"
               >
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <X class="w-6 h-6" />
               </button>
             </div>
           </div>
@@ -74,6 +62,7 @@
 
 <script setup>
 import { ref, watch, onMounted, onBeforeUnmount } from "vue";
+import { X } from "lucide-vue-next";
 
 const props = defineProps({
   isOpen: { type: Boolean, required: true },

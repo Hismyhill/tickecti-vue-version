@@ -3,6 +3,7 @@
 import { computed } from "vue";
 import { RouterLink } from "vue-router";
 import { useAuthStore } from "../stores/auth";
+import { Zap, Settings, MessageSquare } from "lucide-vue-next";
 
 const authStore = useAuthStore();
 const isAuth = computed(() => !!authStore.user);
@@ -119,19 +120,7 @@ const isAuth = computed(() => !!authStore.user);
           <div
             class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6"
           >
-            <svg
-              class="w-8 h-8 text-blue-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              />
-            </svg>
+            <Zap class="w-8 h-8 text-blue-600" />
           </div>
           <h3 class="text-xl font-bold text-gray-800 mb-4">Lightning Fast</h3>
           <p class="text-gray-600">
@@ -145,19 +134,7 @@ const isAuth = computed(() => !!authStore.user);
           <div
             class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6"
           >
-            <svg
-              class="w-8 h-8 text-purple-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-              />
-            </svg>
+            <Settings class="w-8 h-8 text-purple-600" />
           </div>
           <h3 class="text-xl font-bold text-gray-800 mb-4">
             Easy to Customize
@@ -173,19 +150,7 @@ const isAuth = computed(() => !!authStore.user);
           <div
             class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-6"
           >
-            <svg
-              class="w-8 h-8 text-pink-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-              />
-            </svg>
+            <MessageSquare class="w-8 h-8 text-pink-600" />
           </div>
           <h3 class="text-xl font-bold text-gray-800 mb-4">
             Real-time Support

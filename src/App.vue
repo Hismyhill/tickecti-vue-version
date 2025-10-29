@@ -4,7 +4,6 @@ import { useAuthStore } from "@/stores/auth";
 import { useRoute } from "vue-router";
 import { ref, computed } from "vue";
 import Sidebar from "./components/Sidebar.vue";
-import Header from "./components/Header.vue";
 
 const authStore = useAuthStore();
 

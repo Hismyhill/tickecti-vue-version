@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useAuthStore } from "../stores/auth";
+import { MenuIcon } from "lucide-vue-next";
 
 const router = useRouter();
 const route = useRoute();
@@ -70,7 +71,9 @@ async function handleLogout() {
       <!-- Mobile Menu -->
       <div class="md:hidden">
         <details>
-          <summary class="btn btn-outline">Menu</summary>
+          <summary class="btn btn-outline cursor-pointer">
+            <MenuIcon class="w-6 h-6" />
+          </summary>
           <div class="mt-2 bg-white p-3 shadow card absolute right-0 w-48 z-50">
             <router-link to="/dashboard" class="block py-2">
               Dashboard

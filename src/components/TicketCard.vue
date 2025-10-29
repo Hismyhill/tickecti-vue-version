@@ -18,9 +18,9 @@
         <span
           :class="['status-tag', statusClasses[ticket.status]]"
           role="status"
-          :aria-label="`Ticket status: ${ticket.status.replace('_', ' ')}`"
+          :aria-label="`Ticket status: ${ticket.status.replace('-', ' ')}`"
         >
-          {{ ticket.status.replace("_", " ") }}
+          {{ ticket.status.replace("-", " ") }}
         </span>
 
         <div class="flex gap-2" role="group" aria-label="Ticket actions">
@@ -56,7 +56,7 @@ const props = defineProps({
       "id" in t &&
       "title" in t &&
       "status" in t &&
-      ["open", "in_progress", "closed"].includes(t.status),
+      ["open", "in-progress", "closed"].includes(t.status),
   },
   onEdit: { type: Function, required: true },
   onDelete: { type: Function, required: true },
@@ -64,7 +64,7 @@ const props = defineProps({
 
 const statusClasses = {
   open: "bg-open/10 text-open",
-  in_progress: "bg-in_progress/10 text-in_progress",
+  "in-progress": "bg-in_progress/10 text-in_progress",
   closed: "bg-closed/10 text-closed",
 };
 

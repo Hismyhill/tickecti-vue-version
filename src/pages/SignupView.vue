@@ -2,7 +2,7 @@
   <div
     class="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4"
   >
-    <div class="w-full max-w-md">
+    <div class="w-full max-w-md my-auto">
       <div class="bg-white rounded-2xl shadow-lg p-8">
         <h2 class="text-3xl font-bold text-center text-gray-800">
           Create Your Account
@@ -12,55 +12,67 @@
         </p>
 
         <form @submit.prevent="handleSubmit" class="space-y-6" novalidate>
-          <div class="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label for="full-name" class="sr-only">Full name</label>
-              <input
-                id="full-name"
-                v-model="form.name"
-                name="full-name"
-                type="text"
-                autocomplete="name"
-                required
-                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Full name"
-              />
-              <p v-if="errors.name" class="mt-1 text-sm text-red-600">
-                {{ errors.name }}
-              </p>
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <User2 class="w-5 h-5 text-gray-400" />
             </div>
-            <div>
-              <label for="email-address" class="sr-only">Email address</label>
-              <input
-                id="email-address"
-                v-model="form.email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-              />
-              <p v-if="errors.email" class="mt-1 text-sm text-red-600">
-                {{ errors.email }}
-              </p>
+            <input
+              id="full-name"
+              v-model="form.name"
+              name="full-name"
+              type="text"
+              autocomplete="name"
+              required
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Full name"
+            />
+            <p v-if="errors.name" class="mt-1 text-sm text-red-600">
+              {{ errors.name }}
+            </p>
+          </div>
+
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <MailIcon class="w-5 h-5 text-gray-400" />
             </div>
-            <div>
-              <label for="password" class="sr-only">Password</label>
-              <input
-                id="password"
-                v-model="form.password"
-                name="password"
-                type="password"
-                autocomplete="new-password"
-                required
-                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-              <p v-if="errors.password" class="mt-1 text-sm text-red-600">
-                {{ errors.password }}
-              </p>
+            <input
+              id="email-address"
+              v-model="form.email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Email address"
+            />
+            <p v-if="errors.email" class="mt-1 text-sm text-red-600">
+              {{ errors.email }}
+            </p>
+          </div>
+
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <LockIcon class="w-5 h-5 text-gray-400" />
             </div>
+            <input
+              id="password"
+              v-model="form.password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              required
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Password"
+            />
+            <p v-if="errors.password" class="mt-1 text-sm text-red-600">
+              {{ errors.password }}
+            </p>
           </div>
 
           <div
@@ -105,7 +117,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
-import { notifyError, notifySuccess } from "@/utils/notify";
+import { LockIcon, MailIcon, User2 } from "lucide-vue-next";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -117,22 +129,32 @@ const form = ref({
 });
 const errors = ref({});
 const isSubmitting = ref(false);
+const successMsg = ref("");
+const errorMsg = ref("");
 
 async function handleSubmit() {
   try {
     isSubmitting.value = true;
     errors.value = validate();
-    if (Object.keys(errors.value).length) return;
+    if (Object.keys(errors.value).length) {
+      isSubmitting.value = false;
+      return;
+    }
 
     const result = await authStore.signup(form.value);
     if (result?.user) {
-      notifySuccess("Account created successfully");
-      router.replace("/dashboard");
+      successMsg.value = "Account created successfully! Redirecting...";
+      errorMsg.value = "";
+      setTimeout(() => {
+        router.replace("/dashboard");
+      }, 2000);
     } else {
-      notifyError("Something went wrong. Please try again.");
+      errorMsg.value = "Something went wrong. Please try again.";
+      successMsg.value = "";
     }
   } catch (err) {
-    notifyError(err.message || "Signup failed");
+    errorMsg.value = err.message || "Signup failed";
+    successMsg.value = "";
   } finally {
     isSubmitting.value = false;
   }

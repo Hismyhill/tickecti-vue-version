@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import Modal from "./Modal.vue";
 import TicketForm from "./TicketForm.vue";
 import { auth } from "../shared-assets/supabase";
-import { MenuIcon, PlusCircleIcon, PlusIcon } from "lucide-vue-next";
+import { MenuIcon, PlusCircleIcon, PlusIcon, LayoutGrid, Ticket, ChevronLeft, User } from "lucide-vue-next";
 
 const props = defineProps({
   isCollapsed: {
@@ -27,16 +27,10 @@ const navItems = [
   {
     path: "/dashboard",
     label: "Dashboard",
-    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-    </svg>`,
   },
   {
     path: "/tickets",
     label: "Tickets",
-    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-    </svg>`,
   },
 ];
 
@@ -86,7 +80,7 @@ async function handleCreate(data) {
   <!-- Mobile Overlay -->
   <div
     v-if="isMobileOpen"
-    class="sidebar-overlay md:hidden"
+    class="sidebar-overlay md:hidden cursor-pointer"
     @click="isMobileOpen = false"
   ></div>
 
@@ -113,22 +107,12 @@ async function handleCreate(data) {
       class="absolute -right-3 top-8 bg-white border border-gray-200 rounded-full p-1.5 shadow-sm hover:shadow-md transition-shadow"
       :aria-label="isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'"
     >
-      <svg
+      <ChevronLeft
         :class="[
           'w-4 h-4 text-gray-600 transform transition-transform duration-300',
           isCollapsed ? 'rotate-180' : '',
         ]"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M15 19l-7-7 7-7"
-        />
-      </svg>
+      />
     </button>
 
     <!-- Logo Section -->
@@ -155,13 +139,14 @@ async function handleCreate(data) {
         :key="item.path"
         :to="item.path"
         :class="[
-          'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200',
+          'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 cursor-pointer',
           route.path === item.path
             ? 'bg-blue-50 text-blue-600'
             : 'text-gray-600 hover:bg-gray-50',
         ]"
       >
-        <span v-html="item.icon"></span>
+        <LayoutGrid v-if="item.path === '/dashboard'" class="w-6 h-6" />
+        <Ticket v-if="item.path === '/tickets'" class="w-6 h-6" />
         <span
           :class="[
             'font-medium transition-opacity duration-300',
@@ -220,19 +205,7 @@ async function handleCreate(data) {
         <div
           class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center"
         >
-          <svg
-            class="w-6 h-6 text-gray-500"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
+          <User class="w-6 h-6 text-gray-500" />
         </div>
         <div
           :class="[
