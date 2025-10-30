@@ -3,8 +3,15 @@ import { computed, onMounted, ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import Modal from "./Modal.vue";
 import TicketForm from "./TicketForm.vue";
-import { auth } from "../shared-assets/supabase";
-import { MenuIcon, PlusCircleIcon, PlusIcon, LayoutGrid, Ticket, ChevronLeft, User } from "lucide-vue-next";
+import { auth, supabase } from "../shared-assets/supabase";
+import {
+  MenuIcon,
+  PlusCircleIcon,
+  LayoutGrid,
+  Ticket,
+  ChevronLeft,
+  User,
+} from "lucide-vue-next";
 
 const props = defineProps({
   isCollapsed: {
@@ -44,10 +51,10 @@ watch(
 
 // Get user data on component mount
 onMounted(async () => {
-  const { data } = await auth.getUser();
+  const { data } = await supabase.auth.getUser();
   user.value = data?.user;
 });
-
+console.log(user);
 const handleLogout = async () => {
   try {
     await auth.signOut();
@@ -214,10 +221,11 @@ async function handleCreate(data) {
           ]"
         >
           <div class="flex flex-col gap-1">
-            <p class="font-medium text-gray-700">
-              {{ user?.user_metadata?.full_name || user?.email }}
+            <p class="text-sm text-gray-500">
+              {{ user?.email.substring(0, 20) + "..." }}
             </p>
-            <p class="text-sm text-gray-500">{{ user?.email }}</p>
+          </div>
+          <div>
             <button
               @click="handleLogout"
               class="text-sm text-red-600 hover:text-red-700 mt-2"
@@ -230,9 +238,3 @@ async function handleCreate(data) {
     </div>
   </aside>
 </template>
-
-<!-- <style scoped>
-.sidebar-overlay {
-  @apply fixed inset-0 bg-black bg-opacity-50 z-30;
-}
-</style> -->

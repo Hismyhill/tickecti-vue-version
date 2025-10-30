@@ -3,6 +3,11 @@
 import Header from "@/components/Header.vue";
 import Hero from "@/components/Hero.vue";
 import Footer from "@/components/Footer.vue";
+import {
+  Accessibility,
+  ArrowLeftRight,
+  ClipboardEditIcon,
+} from "lucide-vue-next";
 </script>
 
 <template>
@@ -13,90 +18,54 @@ import Footer from "@/components/Footer.vue";
         <Hero />
 
         <!-- Why Ticketi -->
-        <section class="py-20">
-          <div class="text-center max-w-3xl mx-auto mb-12">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4">Why Ticketi?</h2>
-            <p class="text-lg text-gray-600">
+        <section className="py-20">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              Why Ticketi?
+            </h2>
+            <p className="text-lg text-gray-600">
               Ticketi is designed to be simple, intuitive, and powerful. Here
               are some of the features that make it the best choice for your
               team.
             </p>
           </div>
-
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="card p-8 text-center rounded-lg shadow-lg bg-white">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="card p-8 text-center rounded-lg shadow-lg bg-white">
               <div
                 class="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-blue-100 lg:h-16 lg:w-16"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6 text-blue-600"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9.75 3.75H9.375A1.125 1.125 0 008.25 4.875V8.25m0 0l-3.659 3.659A1.5 1.5 0 004.5 12.75V15.75m0 0l-1.5 1.5V21h18v-4.5l-1.5-1.5V12.75a1.5 1.5 0 00-.441-1.086L15.75 8.25m-4.875-4.5H14.25m-4.875 0V8.25m0 0h-3.659m3.659 0l3.659 3.659m0 0V15.75m0 0h3.659m-3.659 0l3.659 3.659m0 0V21m-4.875-4.5H14.25m-4.875 0V21"
-                  />
-                </svg>
+                <ClipboardEditIcon class="w-6 h-6 text-blue-600" />
               </div>
-              <h4 class="font-bold text-xl mb-2">Create Tickets with Ease</h4>
-              <p class="text-gray-600">
+              <h4 className="font-bold text-xl mb-2">
+                Create Tickets with Ease
+              </h4>
+              <p className="text-gray-600">
                 Our intuitive form makes it simple to create and categorize
                 tickets, so you can get back to what matters.
               </p>
             </div>
-
-            <div class="card p-8 text-center rounded-lg shadow-lg bg-white">
+            <div className="card p-8 text-center rounded-lg shadow-lg bg-white">
               <div
                 class="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-blue-100 lg:h-16 lg:w-16"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6 text-blue-600"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h18m-13.5-9L21 7.5m0 0L16.5 12M21 7.5H3"
-                  />
-                </svg>
+                <ArrowLeftRight class="w-6 h-6 text-blue-600" />
               </div>
-              <h4 class="font-bold text-xl mb-2">Track Ticket Status</h4>
-              <p class="text-gray-600">
+              <h4 className="font-bold text-xl mb-2">Track Ticket Status</h4>
+              <p className="text-gray-600">
                 Keep an eye on the progress of each ticket with our clear,
                 color-coded status indicators.
               </p>
             </div>
-
-            <div class="card p-8 text-center rounded-lg shadow-lg bg-white">
+            <div className="card p-8 text-center rounded-lg shadow-lg bg-white">
               <div
                 class="flex justify-center items-center mb-4 w-12 h-12 rounded-full bg-blue-100 lg:h-16 lg:w-16"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-6 h-6 text-blue-600"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.473-1.688 3.348l-4.48 4.48a1.75 1.75 0 01-2.474 0l-4.48-4.48A3.75 3.75 0 013 12V6a3 3 0 013-3h12a3 3 0 013 3v6z"
-                  />
-                </svg>
+                <Accessibility class="w-6 h-6 text-blue-600" />
               </div>
-              <h4 class="font-bold text-xl mb-2">Built for Accessibility</h4>
-              <p class="text-gray-600">
+              <h4 className="font-bold text-xl mb-2">
+                Built for Accessibility
+              </h4>
+              <p className="text-gray-600">
                 We believe in software for everyone. Ticketi is designed with
                 accessibility in mind, from the ground up.
               </p>
